@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>test</title>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@8.8.3/dist/dbr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/eruda@2.4.1/eruda.min.js"></script>
+  <style>
+    .native-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <button>dbr</button>
+  <button>native</button>
+  <button>clear localStorage</button>
+  <video class="native-video" id="video" style="display:none;"></video>
+  <script>
+    eruda.init();
+    let btns = document.querySelectorAll('button')
+    let video = document.getElementById('video');
+    
+    btns[0].addEventListener('click', async()=>{
+
+      let scanner = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+
+      scanner.onFrameRead = results => {
+        if (results.length > 0) console.log(results);
+      };
+      scanner.onUnduplicatedRead = (txt, result) => {
+        alert(txt);
+      };
+
+
+      let bFirst = true;
+      let bestDevice = localStorage.getItem('dynamsoft-bestDevice');
+      let _old_getAllCameras;
+
+
+      if(bestDevice){
+        // 2rd time will enter here
+        console.log(`it's 2rd time, best DeviceId is ${bestDevice}`)
+        _old_getAllCameras = scanner.dce.getAllCameras
+        scanner.dce.getAllCameras = ()=>{
+          const devices = [{deviceId: bestDevice ,label:'camera2 0, facing back',_checked:true}];
+          scanner.dce._allCameras = devices;
+          return devices;
+        };
+        scanner.dce.updateVideoSettings({
+          video:{
+            width:{ideal:1280},
+            height:{ideal:720},
+            deviceId: bestDevice
+          }
+        });
+        console.log(scanner.dce._lastDeviceId);
+        bFirst = false;
+      } else{
+        console.log(`it's 1st time`)
+      }
+
+      let beginTime = Date.now()
+      await scanner.show();
+      console.log((Date.now() - beginTime) + 'ms');
+
+      // save best device into localStorage
+      bestDevice = scanner.dce._lastDeviceId;
+      if(bestDevice !== localStorage.getItem('dynamsoft-bestDevice')) {
+        console.log('ID不同了');
+      }
+      if(bestDevice){
+        localStorage.setItem('dynamsoft-bestDevice',bestDevice);
+        console.log(`bestDevice ${bestDevice} had saved.`)
+      }
+
+      if(!bFirst){
+        scanner.dce.getAllCameras = _old_getAllCameras;
+        await scanner.dce.getAllCameras();
+        scanner.dce._renderSelCameraInfo();
+      }
+    })
+
+    btns[1].addEventListener('click', async () => {
+      const nativeTime = Date.now();
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+          width:{ideal:1280},
+          height:{ideal:720}
+        }
+      });
+      video.onloadedmetadata = ()=>{
+        video.onloadedmetadata = null;
+        console.log((Date.now() - nativeTime) + 'ms');
+        video.style.display = ''
+      };
+      video.srcObject = stream;
+      video.play();
+    })
+
+    btns[2].addEventListener('click', () => {
+      localStorage.removeItem('dynamsoft-bestDevice')
+    })
+  </script>
+</body>
+</html>
