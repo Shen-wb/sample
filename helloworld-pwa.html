@@ -23,6 +23,7 @@
         addBtn.style.display = 'none';
         window.addEventListener('beforeinstallprompt', (e) => {
             // 稍后再触发此事件
+            e.preventDefault();
             deferredPrompt = e;
             // 更新 UI 以提醒用户可以将 App 安装到桌面
             addBtn.style.display = 'block';
