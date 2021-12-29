@@ -8,6 +8,7 @@
     <meta name="keywords" content="read barcode from camera in PWA">
     <title>Dynamsoft Barcode Reader PWA Sample - Hello World (Decoding via Camera)</title>
     <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@8.8.3/dist/dbr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda@2.4.1/eruda.min.js"></script>
     <link rel="manifest" href="./helloworld-pwa.webmanifest">
 </head>
 
@@ -16,6 +17,7 @@
     <button id='readBarcode'>Read Barcode via Camera</button>
     <button class="add-button">Add to home screen</button>
     <script>
+        eruda.init();
         let deferredPrompt;
         const addBtn = document.querySelector('.add-button');
         addBtn.style.display = 'none';
