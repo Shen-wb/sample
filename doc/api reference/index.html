@@ -1,0 +1,192 @@
+<!DOCTYPE html><html class="default no-js"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Dynamsoft Camera Enhancer SDK for Javascript - v0.20211230104511.0</title><meta name="description" content="Documentation for Dynamsoft Camera Enhancer SDK for Javascript - v0.20211230104511.0"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem(&quot;tsd-theme&quot;) || &quot;os&quot;)</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">Dynamsoft Camera Enhancer SDK for Javascript - v0.20211230104511.0</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>Dynamsoft Camera Enhancer SDK for Javascript - v0.20211230104511.0</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#dynamsoft-camera-enhancer-for-your-website" id="dynamsoft-camera-enhancer-for-your-website" style="color: inherit; text-decoration: none;">
+  <h1>Dynamsoft Camera Enhancer for Your Website</h1>
+</a>
+<p>Allow your website to easily control cameras on desktop and mobile devices.</p>
+<p>Once integrated, your users can open your website in a browser, access their cameras to stream live video and acquire realtime frames.</p>
+<p>In this guide, you will learn step by step on how to integrate this library into your website.</p>
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting Started</h2>
+</a>
+
+<a href="#include-the-library" id="include-the-library" style="color: inherit; text-decoration: none;">
+  <h3>Include the library</h3>
+</a>
+
+<a href="#use-a-cdn" id="use-a-cdn" style="color: inherit; text-decoration: none;">
+  <h4>Use a CDN</h4>
+</a>
+<p>The simplest way to include the library is to use either the <a href="https://jsdelivr.com/">jsDelivr</a> or <a href="https://unpkg.com/">UNPKG</a> CDN.</p>
+<ul>
+<li>jsDelivr</li>
+</ul>
+<pre><code class="language-html"><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-3"> </span><span class="hl-4">src</span><span class="hl-3">=</span><span class="hl-5">&quot;https://cdn.jsdelivr.net/npm/dynamsoft-camera-enhancer@2.0.3/dist/dce.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+<ul>
+<li>UNPKG</li>
+</ul>
+<pre><code class="language-html"><span class="hl-0">  </span><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-3"> </span><span class="hl-4">src</span><span class="hl-3">=</span><span class="hl-5">&quot;https://unpkg.com/dynamsoft-camera-enhancer@2.0.3/dist/dce.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+
+<a href="#host-the-library-yourself-recommended" id="host-the-library-yourself-recommended" style="color: inherit; text-decoration: none;">
+  <h4>Host the library yourself (recommended)</h4>
+</a>
+<p>Besides using the CDN, you can also download the library and host its files on your own website / server before including it in your application.</p>
+<p>The following shows a few ways to download the library.</p>
+<ul>
+<li><p>From the website</p>
+<p><a href="https://www.dynamsoft.com/camera-enhancer/downloads/1000021-confirmation/?utm_source=guide">Download the JavaScript Package</a></p>
+</li>
+<li><p>yarn</p>
+</li>
+</ul>
+<pre><code class="language-cmd"><span class="hl-0">$ yarn </span><span class="hl-6">add</span><span class="hl-0"> </span><span class="hl-7">dynamsoft</span><span class="hl-0">-</span><span class="hl-7">camera</span><span class="hl-0">-</span><span class="hl-7">enhancer</span>
+</code></pre>
+<ul>
+<li>npm</li>
+</ul>
+<pre><code><span class="hl-7">$</span><span class="hl-0"> </span><span class="hl-7">npm</span><span class="hl-0"> </span><span class="hl-7">install</span><span class="hl-0"> </span><span class="hl-7">dynamsoft</span><span class="hl-0">-</span><span class="hl-7">camera</span><span class="hl-0">-</span><span class="hl-7">enhancer</span><span class="hl-0"> --</span><span class="hl-7">save</span>
+</code></pre>
+<p>Depending on how you downloaded the library and where you put it. You can typically include it like this:</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-3"> </span><span class="hl-4">src</span><span class="hl-3">=</span><span class="hl-5">&quot;/dce-js-2.0.3/dist/dce.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+<p>or</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-3"> </span><span class="hl-4">src</span><span class="hl-3">=</span><span class="hl-5">&quot;/node_modules/dynamsoft-camera-enhancer/dist/dce.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+<p>Read more on <a href="#hosting-the-library">how to host the library</a>.</p>
+
+<a href="#interact-with-the-library" id="interact-with-the-library" style="color: inherit; text-decoration: none;">
+  <h3>Interact with the library</h3>
+</a>
+
+<a href="#create-a-cameraenhancer-object" id="create-a-cameraenhancer-object" style="color: inherit; text-decoration: none;">
+  <h4>Create a <code>CameraEnhancer</code> object</h4>
+</a>
+<p>To use the library, we first create a <code>CameraEnhancer</code> object.</p>
+<pre><code class="language-javascript"><span class="hl-0"> </span><span class="hl-8">let</span><span class="hl-0"> </span><span class="hl-7">enhancer</span><span class="hl-0"> = </span><span class="hl-8">null</span><span class="hl-0">;</span><br/><span class="hl-0"> </span><span class="hl-9">try</span><span class="hl-0"> {</span><br/><span class="hl-0">     </span><span class="hl-8">let</span><span class="hl-0"> </span><span class="hl-7">pEnhancer</span><span class="hl-0"> = </span><span class="hl-8">null</span><span class="hl-0">;</span><br/><span class="hl-0">     (</span><span class="hl-8">async</span><span class="hl-0"> () </span><span class="hl-8">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">         </span><span class="hl-7">enhancer</span><span class="hl-0"> = </span><span class="hl-9">await</span><span class="hl-0"> (</span><span class="hl-7">pEnhancer</span><span class="hl-0"> = </span><span class="hl-7">pEnhancer</span><span class="hl-0"> || </span><span class="hl-7">Dynamsoft</span><span class="hl-0">.</span><span class="hl-10">DCE</span><span class="hl-0">.</span><span class="hl-7">CameraEnhancer</span><span class="hl-0">.</span><span class="hl-6">createInstance</span><span class="hl-0">());</span><br/><span class="hl-0">     })();</span><br/><span class="hl-0"> } </span><span class="hl-9">catch</span><span class="hl-0"> (</span><span class="hl-7">ex</span><span class="hl-0">) {</span><br/><span class="hl-0">     </span><span class="hl-7">console</span><span class="hl-0">.</span><span class="hl-6">error</span><span class="hl-0">(</span><span class="hl-7">ex</span><span class="hl-0">);</span><br/><span class="hl-0"> }</span>
+</code></pre>
+
+<a href="#configure-the-cameraenhancer-object" id="configure-the-cameraenhancer-object" style="color: inherit; text-decoration: none;">
+  <h4>Configure the <code>CameraEnhancer</code> object</h4>
+</a>
+<p>As shown in the code snippet below, we just need to specify where the UI should be created before opening the video stream. If opened without this customization, a full-page-size UI element will be created over the current page.</p>
+<pre><code class="language-html"><span class="hl-11">&lt;!-- Define an element to hold the UI element --&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-4">id</span><span class="hl-0">=</span><span class="hl-5">&quot;enhancerUIContainer&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-3">    </span><span class="hl-8">let</span><span class="hl-3"> </span><span class="hl-7">pEnhancer</span><span class="hl-3"> </span><span class="hl-0">=</span><span class="hl-3"> </span><span class="hl-8">null</span><span class="hl-3">;</span><br/><span class="hl-3">    (</span><span class="hl-8">async</span><span class="hl-3"> () </span><span class="hl-8">=&gt;</span><span class="hl-3"> {</span><br/><span class="hl-3">        </span><span class="hl-8">let</span><span class="hl-3"> </span><span class="hl-7">enhancer</span><span class="hl-3"> </span><span class="hl-0">=</span><span class="hl-3"> </span><span class="hl-9">await</span><span class="hl-3"> (</span><span class="hl-7">pEnhancer</span><span class="hl-3"> </span><span class="hl-0">=</span><span class="hl-3"> </span><span class="hl-7">pEnhancer</span><span class="hl-3"> </span><span class="hl-0">||</span><span class="hl-3"> </span><span class="hl-7">Dynamsoft</span><span class="hl-3">.</span><span class="hl-10">DCE</span><span class="hl-3">.</span><span class="hl-7">CameraEnhancer</span><span class="hl-3">.</span><span class="hl-6">createInstance</span><span class="hl-3">());</span><br/><span class="hl-3">        </span><span class="hl-7">document</span><span class="hl-3">.</span><span class="hl-6">getElementById</span><span class="hl-3">(</span><span class="hl-12">&quot;enhancerUIContainer&quot;</span><span class="hl-3">).</span><span class="hl-6">appendChild</span><span class="hl-3">(</span><span class="hl-7">enhancer</span><span class="hl-3">.</span><span class="hl-6">getUIElement</span><span class="hl-3">());</span><br/><span class="hl-3">        </span><span class="hl-9">await</span><span class="hl-3"> </span><span class="hl-7">enhancer</span><span class="hl-3">.</span><span class="hl-6">open</span><span class="hl-3">();</span><br/><span class="hl-3">    })();</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+
+<a href="#customize-the-ui" id="customize-the-ui" style="color: inherit; text-decoration: none;">
+  <h4>Customize the UI</h4>
+</a>
+<p>The built-in UI of the <code>CameraEnhancer</code> object is defined in the file <code>dist/dce.ui.html</code> . There are a few ways to customize it:</p>
+<ul>
+<li><p>Modify the file <code>dist/dce.ui.html</code> directly. </p>
+<p>This option is only possible when you host this file on your own web server instead of using a CDN.</p>
+</li>
+<li><p>Copy the file <code>dist/dce.ui.html</code> to your application, modify it and use the the API <code>defaultUIElementURL</code> to set it as the default UI.</p>
+</li>
+</ul>
+<pre><code class="language-javascript"><span class="hl-7">Dynamsoft</span><span class="hl-0">.</span><span class="hl-10">DCE</span><span class="hl-0">.</span><span class="hl-7">CameraEnhancer</span><span class="hl-0">.</span><span class="hl-7">defaultUIElementURL</span><span class="hl-0"> = </span><span class="hl-12">&quot;THE-URL-TO-THE-FILE&quot;</span><span class="hl-0">;</span>
+</code></pre>
+<blockquote>
+<p>You must set <code>defaultUIElementURL</code> before you call <code>createInstance()</code> .</p>
+</blockquote>
+<ul>
+<li>Append the default UI element to your page, customize it before showing it.</li>
+</ul>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-4">id</span><span class="hl-0">=</span><span class="hl-5">&quot;enhancerUIContainer&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-3">    </span><span class="hl-7">document</span><span class="hl-3">.</span><span class="hl-6">getElementById</span><span class="hl-3">(</span><span class="hl-12">&#39;enhancerUIContainer&#39;</span><span class="hl-3">).</span><span class="hl-6">appendChild</span><span class="hl-3">(</span><span class="hl-7">enhancer</span><span class="hl-3">.</span><span class="hl-6">getUIElement</span><span class="hl-3">());</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+<ul>
+<li><p>Build the UI element into your own web page and specify it with the API <code>setUIElement(HTMLElement)</code>.</p>
+<ul>
+<li>Embed the video</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">div</span><span class="hl-0"> </span><span class="hl-4">id</span><span class="hl-0">=</span><span class="hl-5">&quot;div-video-container&quot;</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">video</span><span class="hl-0"> </span><span class="hl-4">class</span><span class="hl-0">=</span><span class="hl-5">&quot;dce-video&quot;</span><span class="hl-0"> </span><span class="hl-4">playsinline</span><span class="hl-0">=</span><span class="hl-5">&quot;true&quot;</span><span class="hl-0"> </span><span class="hl-4">style</span><span class="hl-0">=</span><span class="hl-5">&quot;width:100%;height:100%;position:absolute;left:0;top:0;&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">video</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">div</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-1">&gt;</span><br/><span class="hl-3">    </span><span class="hl-8">let</span><span class="hl-3"> </span><span class="hl-7">pEnhancer</span><span class="hl-3"> </span><span class="hl-0">=</span><span class="hl-3"> </span><span class="hl-8">null</span><span class="hl-3">;</span><br/><span class="hl-3">    (</span><span class="hl-8">async</span><span class="hl-3"> () </span><span class="hl-8">=&gt;</span><span class="hl-3"> {</span><br/><span class="hl-3">        </span><span class="hl-8">let</span><span class="hl-3"> </span><span class="hl-7">enhancer</span><span class="hl-3"> </span><span class="hl-0">=</span><span class="hl-3"> </span><span class="hl-9">await</span><span class="hl-3"> (</span><span class="hl-7">pEnhancer</span><span class="hl-3"> </span><span class="hl-0">=</span><span class="hl-3"> </span><span class="hl-7">pEnhancer</span><span class="hl-3"> </span><span class="hl-0">||</span><span class="hl-3"> </span><span class="hl-7">Dynamsoft</span><span class="hl-3">.</span><span class="hl-10">DCE</span><span class="hl-3">.</span><span class="hl-7">CameraEnhancer</span><span class="hl-3">.</span><span class="hl-6">createInstance</span><span class="hl-3">());</span><br/><span class="hl-3">        </span><span class="hl-9">await</span><span class="hl-3"> </span><span class="hl-7">enhancer</span><span class="hl-3">.</span><span class="hl-6">setUIElement</span><span class="hl-3">(</span><span class="hl-7">document</span><span class="hl-3">.</span><span class="hl-6">getElementById</span><span class="hl-3">(</span><span class="hl-12">&#39;div-video-container&#39;</span><span class="hl-3">));</span><br/><span class="hl-3">        </span><span class="hl-9">await</span><span class="hl-3"> </span><span class="hl-7">enhancer</span><span class="hl-3">.</span><span class="hl-6">open</span><span class="hl-3">();</span><br/><span class="hl-3">    })();</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+<blockquote>
+<p>The video element must have the class <code>dce-video</code> .</p>
+</blockquote>
+<ul>
+<li>Add the camera list and resolution list. If the class names for these lists match the default ones, <code>dce-sel-camera</code> and <code>dce-sel-resolution</code> , the library will automatically populate the lists and handle the camera/resolution switching.</li>
+</ul>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">select</span><span class="hl-0"> </span><span class="hl-4">class</span><span class="hl-0">=</span><span class="hl-5">&quot;dce-sel-camera&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">select</span><span class="hl-1">&gt;</span>
+</code></pre>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">select</span><span class="hl-0"> </span><span class="hl-4">class</span><span class="hl-0">=</span><span class="hl-5">&quot;dce-sel-resolution&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">select</span><span class="hl-1">&gt;</span>
+</code></pre>
+<blockquote>
+<p>By default, only 3 hard-coded resolutions (1920 x 1080, 1280 x 720 640 x 480),are populated as options. You can show a custom set of options by hardcoding them.</p>
+</blockquote>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">select</span><span class="hl-0"> </span><span class="hl-4">class</span><span class="hl-0">=</span><span class="hl-5">&quot;dce-sel-resolution&quot;</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">option</span><span class="hl-0"> </span><span class="hl-4">class</span><span class="hl-0">=</span><span class="hl-5">&quot;dce-opt-gotResolution&quot;</span><span class="hl-0"> </span><span class="hl-4">value</span><span class="hl-0">=</span><span class="hl-5">&quot;got&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">option</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">option</span><span class="hl-0"> </span><span class="hl-4">data-width</span><span class="hl-0">=</span><span class="hl-5">&quot;1280&quot;</span><span class="hl-0"> </span><span class="hl-4">data-height</span><span class="hl-0">=</span><span class="hl-5">&quot;720&quot;</span><span class="hl-1">&gt;</span><span class="hl-0">1280 x 720</span><span class="hl-1">&lt;/</span><span class="hl-2">option</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">option</span><span class="hl-0"> </span><span class="hl-4">data-width</span><span class="hl-0">=</span><span class="hl-5">&quot;800&quot;</span><span class="hl-0"> </span><span class="hl-4">data-height</span><span class="hl-0">=</span><span class="hl-5">&quot;600&quot;</span><span class="hl-1">&gt;</span><span class="hl-0">800 x 600</span><span class="hl-1">&lt;/</span><span class="hl-2">option</span><span class="hl-1">&gt;</span><br/><span class="hl-0">    </span><span class="hl-1">&lt;</span><span class="hl-2">option</span><span class="hl-0"> </span><span class="hl-4">data-width</span><span class="hl-0">=</span><span class="hl-5">&quot;640&quot;</span><span class="hl-0"> </span><span class="hl-4">data-height</span><span class="hl-0">=</span><span class="hl-5">&quot;480&quot;</span><span class="hl-1">&gt;</span><span class="hl-0">640 x 480</span><span class="hl-1">&lt;/</span><span class="hl-2">option</span><span class="hl-1">&gt;</span><br/><span class="hl-1">&lt;/</span><span class="hl-2">select</span><span class="hl-1">&gt;</span>
+</code></pre>
+<blockquote>
+<p>Generally, you need to provide a resolution that the camera supports. However, in case a camera does not support the specified resolution, it usually uses the nearest supported resolution. As a result, the selected resolution may not be the actual resolution used. In this case, add an option with the class name <code>dce-opt-gotResolution</code> (as shown above) and the library will then use it to show the actual resolution.</p>
+</blockquote>
+
+<a href="#hosting-the-library" id="hosting-the-library" style="color: inherit; text-decoration: none;">
+  <h2>Hosting the library</h2>
+</a>
+
+<a href="#step-one-deploy-the-dist-folder" id="step-one-deploy-the-dist-folder" style="color: inherit; text-decoration: none;">
+  <h3>Step One: Deploy the dist folder</h3>
+</a>
+<p>Once you have downloaded the library, you can locate the &quot;dist&quot; directory and copy it to your server (usually as part of your website / web application). The following shows some of the files in this directory:</p>
+<ul>
+<li><code>dce.js</code> // The main library file</li>
+<li><code>dce.browser.mjs</code> // For using the library as a module (<code>&lt;script type=&quot;module&quot;&gt;</code>)</li>
+<li><code>dce.ui.html</code> // Defines the default enhancer UI</li>
+</ul>
+
+<a href="#step-two-configure-the-server" id="step-two-configure-the-server" style="color: inherit; text-decoration: none;">
+  <h3>Step Two: Configure the Server</h3>
+</a>
+<ul>
+<li><p>Enable HTTPS</p>
+<p>To use the library, you must access your website / web application via a secure HTTPS connection. This is due to browser security restrictions which only grant camera video streaming access to a <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure context</a>.</p>
+<blockquote>
+<p>For convenience, self-signed certificates are allowed during development and testing.</p>
+</blockquote>
+</li>
+</ul>
+
+<a href="#step-three-include-the-library-from-the-server" id="step-three-include-the-library-from-the-server" style="color: inherit; text-decoration: none;">
+  <h3>Step Three: Include the library from the server</h3>
+</a>
+<p>Now that the library is hosted on your server, you can include it accordingly.</p>
+<pre><code class="language-html"><span class="hl-1">&lt;</span><span class="hl-2">script</span><span class="hl-3"> </span><span class="hl-4">src</span><span class="hl-3">=</span><span class="hl-5">&quot;https://www.yourwebsite.com/dynamsoft-camera-enhancer/dist/dce.js&quot;</span><span class="hl-1">&gt;&lt;/</span><span class="hl-2">script</span><span class="hl-1">&gt;</span>
+</code></pre>
+
+<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
+  <h2>FAQ</h2>
+</a>
+
+<a href="#can-i-open-the-web-page-directly-from-the-hard-drive" id="can-i-open-the-web-page-directly-from-the-hard-drive" style="color: inherit; text-decoration: none;">
+  <h3>Can I open the web page directly from the hard drive?</h3>
+</a>
+<p>Yes, for simple testing purposes, it&#39;s perfectly fine to open the file directly from the hard drive. However, you might encounter some issues in doing so (like unable to access the camera, etc.). The recommendation is to deploy this page to your web server and run it over <strong>HTTPS</strong>. If you don&#39;t have a ready-to-use web server but have a package manager like <em>npm</em> or <em>yarn</em>, you can set up a simple HTTP server in minutes. Check out <a href="https://www.npmjs.com/package/http-server"> <code>http-server</code> on npm</a> or <a href="https://yarnpkg.com/package/http-server">yarn</a>. </p>
+
+<a href="#why-can39t-i-use-my-camera" id="why-can39t-i-use-my-camera" style="color: inherit; text-decoration: none;">
+  <h3>Why can&#39;t I use my camera?</h3>
+</a>
+<p>If you open the web page as <code>file:///</code> or <code>http://</code> , the camera may not work and you see the following error in the browser console:</p>
+<blockquote>
+<p>[Deprecation] getUserMedia() no longer works on insecure origins. To use this feature, you should consider switching your application to a secure origin, such as HTTPS. See <a href="https://goo.gl/rStTGz">https://goo.gl/rStTGz</a> for more details.</p>
+</blockquote>
+<ul>
+<li>In Safari 12 the equivalent error is:</li>
+</ul>
+<blockquote>
+<p>Trying to call getUserMedia from an insecure document.</p>
+</blockquote>
+<p>You get this error because the API <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">getUserMedia</a> requires HTTPS to access the camera.</p>
+<ul>
+<li>If you use Chrome or Firefox, you might not get the error because these two browsers allow camera access via file:/// and <a href="http://localhost">http://localhost</a>.</li>
+</ul>
+<p>To make sure your web application can access the camera, please configure your web server to support HTTPS. The following links may help.</p>
+<ul>
+<li>NGINX: <a href="https://nginx.org/en/docs/http/configuring_https_servers.html">Configuring HTTPS servers</a></li>
+<li>IIS: <a href="https://aboutssl.org/how-to-create-a-self-signed-certificate-in-iis/">Create a Self Signed Certificate in IIS</a></li>
+<li>Tomcat: <a href="https://dzone.com/articles/setting-ssl-tomcat-5-minutes">Setting Up SSL on Tomcat in 5 minutes</a></li>
+<li>Node.js: <a href="https://nodejs.org/docs/v0.4.1/api/tls.html">npm tls</a></li>
+</ul>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="modules/interface.html">interface</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/CameraEnhancer.html" class="tsd-kind-icon">Camera<wbr/>Enhancer</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li><li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
