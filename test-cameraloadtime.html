@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>test</title>
-  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@8.8.3/dist/dbr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/keillion-dynamsoft-javascript-barcode@0.20211231133422.0/dist/dbr.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/eruda@2.4.1/eruda.min.js"></script>
   <style>
     .native-video {
@@ -29,6 +29,17 @@
     btns[0].addEventListener('click', async()=>{
 
       let scanner = await Dynamsoft.DBR.BarcodeScanner.createInstance();
+      
+      /* scanner.dce.updateVideoSettings({
+        video:{
+          width:{ideal:1280},
+          height:{ideal:720},
+          // facingMode: 'environment',
+          "facingMode": {
+            "exact": "environment"
+          },
+        }
+      }); */
 
       scanner.onFrameRead = results => {
         if (results.length > 0) console.log(results);
@@ -48,18 +59,20 @@
         console.log(`it's 2rd time, best DeviceId is ${bestDevice}`)
         _old_getAllCameras = scanner.dce.getAllCameras
         scanner.dce.getAllCameras = ()=>{
-          const devices = [{deviceId: bestDevice ,label:'camera2 0, facing back',_checked:true}];
-          scanner.dce._allCameras = devices;
-          return devices;
+         const devices = [{deviceId: bestDevice ,label:'camera2 0, facing back',_checked:true}];
+         scanner.dce._allCameras = devices;
+         return devices;
         };
+        scanner.dce.funcGetCurrentCamera = () =>{
+
+        }
         scanner.dce.updateVideoSettings({
-          video:{
-            width:{ideal:1280},
-            height:{ideal:720},
-            deviceId: bestDevice
-          }
+         video:{
+           width:{ideal:1280},
+           height:{ideal:720},
+           _passCameraChoose: true
+         }
         });
-        console.log(scanner.dce._lastDeviceId);
         bFirst = false;
       } else{
         console.log(`it's 1st time`)
@@ -71,9 +84,6 @@
 
       // save best device into localStorage
       bestDevice = scanner.dce._lastDeviceId;
-      if(bestDevice !== localStorage.getItem('dynamsoft-bestDevice')) {
-        console.log('ID不同了');
-      }
       if(bestDevice){
         localStorage.setItem('dynamsoft-bestDevice',bestDevice);
         console.log(`bestDevice ${bestDevice} had saved.`)
